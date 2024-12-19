@@ -21,7 +21,7 @@ const sidMainCollection = async () => {
   try {
     const data = await getDataFromJson()
     const filteredData = data.filter(
-      (a: IAttack) => a.attacktype1_txt && a.latitude && a.longitude && a.gname && a.iyear
+      (a: IAttack) => a.attacktype1_txt != null && a.latitude != null && a.longitude != null && a.gname != null && a.iyear != null
     )
     await AttackModel.insertMany(filteredData)
     console.log('[database] main sid completed succefuly')
@@ -123,6 +123,8 @@ const sidAttackRegionCollection = async (dbAttacks: IAttack[]) => {
       const newAttackRegion = new AttackRgionModel({
         attackRegion: attack.city,
         attacks: [attack._id],
+        longitude: attack.longitude,
+        latitude: attack.latitude
       })
       attackRegions.push(newAttackRegion)
     } else {
@@ -153,7 +155,11 @@ const sidCollections = async () => {
 }
 
 export const sidDbes = async () => {
-
+  // AttackModel.collection.drop()
+  // AttackOrganizationModel.collection.drop()
+  // AttackRgionModel.collection.drop()
+  // AttackTypeModel.collection.drop()
+  // AttackYearModel.collection.drop()
   if (!(await AttackModel.findOne())) {
     await sidMainCollection()
   }
