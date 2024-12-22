@@ -47,11 +47,36 @@ export const deadliestAttackTypesService = async (attackTypes: string[]) => {
 }
 
 // --- Attackes Region Services ---
-export const highestCasualtyRegionsService = async (region?: string) => {
+
+const getAllCasualtyRegions = async () => {
   try {
     const attacksRegions = (await AttackRegionModel.find({}).populate(
       'attacks'
     )) as IAttackRegion[]
+    return attacksRegions
+  } catch (err) {
+    throw err
+  }
+}
+
+const getCasualtyRegionsByRegion = async (region: string) => {
+  try {
+    const attacksRegions = (await AttackRegionModel.find({
+      attackRegion: region,
+    }).populate('attacks')) as IAttackRegion[]
+    return attacksRegions
+  } catch (err) {
+    throw err
+  }
+}
+
+export const highestCasualtyRegionsService = async (region: string) => {
+  try {
+    const attacksRegions =
+      region == 'any-type'
+        ? await getAllCasualtyRegions()
+        : await getCasualtyRegionsByRegion(region)
+
     const reduceAttackRegions = attacksRegions.map((a: IAttackRegion) => {
       return {
         attackRegion: a.attackRegion,
@@ -61,7 +86,6 @@ export const highestCasualtyRegionsService = async (region?: string) => {
         latitude: a.latitude,
       }
     })
-    if (region) return reduceAttackRegions.find((a) => a.attackRegion == region)
     return reduceAttackRegions.sort((a, b) => b.casualties - a.casualties).slice(0, 15)
   } catch (err) {
     throw err
