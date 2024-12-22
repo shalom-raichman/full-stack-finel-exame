@@ -1,9 +1,8 @@
 import { Request, Response } from 'express'
 import { deadliestAttackTypesService, highestCasualtyRegionsService } from '../services/analysis.service'
 
-export const deadliestAttackTypes = async (req: Request, res: Response) => {
-  const data = await deadliestAttackTypesService(req.params.attackType)
-  console.log(req.params['attackTypes'])
+export const  deadliestAttackTypes = async (req: Request, res: Response) => {
+  const data = await deadliestAttackTypesService(JSON.parse(req.params.attackType))
   try {
     res.json({
       err: false,
