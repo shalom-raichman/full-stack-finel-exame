@@ -11,3 +11,15 @@ export const getDeadliestAttackTypes = async (attackType = ['any-type']) => {
     console.error(err)
   }
 }
+
+export const getDeadliestRegions = async (attackType = 'any-type') => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}api/analysis/highest-casualty-regions/${attackType}`
+    )
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.error(err)
+  }
+}
