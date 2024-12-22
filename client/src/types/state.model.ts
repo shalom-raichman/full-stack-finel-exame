@@ -5,6 +5,7 @@ interface MyState {
 
 export interface AttackTypeModel extends MyState {
   data: {
+    _id: string
     attackType: string
     casualties: number
   }[]
@@ -12,6 +13,7 @@ export interface AttackTypeModel extends MyState {
 
 export interface AttackRegionModel extends MyState {
   data: {
+    _id: string
     attackRegion: string
     casualties: number
     longitude: number
