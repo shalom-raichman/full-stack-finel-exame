@@ -3,11 +3,38 @@ import AttackRegionModel, { IAttackRegion } from '../models/attackRegion.schema'
 import AttackYearModel, { IAttackYear } from '../models/attackYear.schema'
 
 // --- Attacks Types Services ---
-export const deadliestAttackTypesService = async (attackType?: string) => {
+
+const getAttackTypesByType = async (attackTypes: string[]) => {
+  try {
+    console.log('first')
+    const attacksTypes = (await AttackTypeModel.find({
+      attackType: { $in: attackTypes },
+    }).populate('attacks')) as IAttackType[]
+    return attacksTypes
+  } catch (err) {
+    throw err
+  }
+}
+
+const getAttackTypes = async () => {
   try {
     const attacksTypes = (await AttackTypeModel.find({}).populate(
       'attacks'
     )) as IAttackType[]
+    return attacksTypes
+  } catch (err) {
+    throw err
+  }
+}
+
+export const deadliestAttackTypesService = async (attackTypes: string[]) => {
+  try {
+    console.log(attackTypes)
+    const attacksTypes =
+      attackTypes[0] == 'any-type'
+        ? await getAttackTypes()
+        : await getAttackTypesByType(attackTypes)
+
     const reduceAttackTypes = attacksTypes.map((a: IAttackType) => {
       return {
         attackType: a.attackType,
@@ -15,8 +42,6 @@ export const deadliestAttackTypesService = async (attackType?: string) => {
         casualties: a.attacks.reduce((sum, a) => sum + a.nkill + a.nwound, 0),
       }
     })
-
-    if (attackType) return reduceAttackTypes.find((a) => a.attackType == attackType)
     return reduceAttackTypes.sort((a, b) => b.casualties - a.casualties)
   } catch (err) {
     throw err
@@ -97,14 +122,16 @@ export const incidentTrendsService = async (filters: {
 }) => {
   try {
     if (filters.year) {
-      console.log(reduceYears(
-        (await incidentTrendsBySingelYear(filters.year)) as IAttackYear[]
-      ))
+      console.log(
+        reduceYears((await incidentTrendsBySingelYear(filters.year)) as IAttackYear[])
+      )
       return reduceYears(
         (await incidentTrendsBySingelYear(filters.year)) as IAttackYear[]
       )
     } else if (filters.fromYear && filters.toYear) {
-      console.log(reduceYears(await incidentTrendsByYears(filters.fromYear, filters.toYear)))
+      console.log(
+        reduceYears(await incidentTrendsByYears(filters.fromYear, filters.toYear))
+      )
       return reduceYears(await incidentTrendsByYears(filters.fromYear, filters.toYear))
     } else if (filters.Nyears) {
       console.log(reduceYears(await incidentTrendsInLastYears(filters.Nyears)))
