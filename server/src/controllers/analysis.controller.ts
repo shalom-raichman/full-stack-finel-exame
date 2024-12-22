@@ -1,11 +1,14 @@
 import { Request, Response } from 'express'
+import { deadliestAttackTypesService, highestCasualtyRegionsService } from '../services/analysis.service'
 
-export const funcName = async (req: Request, res: Response) => {
+export const deadliestAttackTypes = async (req: Request, res: Response) => {
+  const data = await deadliestAttackTypesService(req.params.attackType)
+  console.log(req.params['attackTypes'])
   try {
     res.json({
       err: false,
-      message: 'replace with message',
-      data: null,
+      message: 'Here is the deadliest attack types',
+      data: data,
     })
   } catch (err) {
     res.json({
@@ -16,12 +19,13 @@ export const funcName = async (req: Request, res: Response) => {
   }
 }
 
-export const funcName2 = async (req: Request, res: Response) => {
+export const highestCasualtyRegions = async (req: Request, res: Response) => {
   try {
+    const data = await highestCasualtyRegionsService(req.params.region)
     res.json({
       err: false,
-      message: 'replace with message',
-      data: null,
+      message: 'Here is the deadliest regions',
+      data: data,
     })
   } catch (err) {
     res.json({
