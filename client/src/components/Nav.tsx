@@ -7,7 +7,7 @@ import {
   ListItemText,
 } from '@mui/material'
 import { useState } from 'react'
-import { GiTank } from 'react-icons/gi'
+import { CiMap } from 'react-icons/ci'
 import { HiOutlineClipboardDocumentList } from 'react-icons/hi2'
 import { IoStatsChartOutline } from 'react-icons/io5'
 import { TfiAgenda } from 'react-icons/tfi'
@@ -31,6 +31,7 @@ const Nav = () => {
     <div className='nav'>
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <List component='nav' aria-label='main mailbox folders'>
+
           <ListItemButton
             selected={selectedIndex === 0}
             onClick={(event) => {
@@ -41,26 +42,26 @@ const Nav = () => {
             <ListItemIcon>
               <IoStatsChartOutline size={30} />
             </ListItemIcon>
-            <ListItemText primary='Attack Types' />
-          </ListItemButton>
-          <ListItemButton
-            selected={selectedIndex === 3}
-            onClick={(event) => {
-              // heandleAllCharts()
-              handleListItemClick(event, 3)
-            }}
-          >
-            <ListItemIcon>
-              <IoStatsChartOutline size={30} />
-            </ListItemIcon>
-            <ListItemText primary='dashboard' />
+            <ListItemText primary='Deadliest Attack Types' />
           </ListItemButton>
 
           <ListItemButton
             selected={selectedIndex === 1}
             onClick={(event) => {
-              // heandleAllOrders()
+              handelNavigate('CasualtyRegions')
               handleListItemClick(event, 1)
+            }}
+          >
+            <ListItemIcon>
+              <CiMap size={30} />
+            </ListItemIcon>
+            <ListItemText primary='Highest Casualty Regions' />
+          </ListItemButton>
+
+          <ListItemButton
+            selected={selectedIndex === 2}
+            onClick={(event) => {
+              handleListItemClick(event, 2)
             }}
           >
             <ListItemIcon>
