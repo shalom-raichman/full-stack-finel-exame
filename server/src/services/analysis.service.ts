@@ -6,7 +6,6 @@ import AttackYearModel, { IAttackYear } from '../models/attackYear.schema'
 
 const getAttackTypesByType = async (attackTypes: string[]) => {
   try {
-    console.log('first')
     const attacksTypes = (await AttackTypeModel.find({
       attackType: { $in: attackTypes },
     }).populate('attacks')) as IAttackType[]
@@ -29,7 +28,6 @@ const getAttackTypes = async () => {
 
 export const deadliestAttackTypesService = async (attackTypes: string[]) => {
   try {
-    console.log(attackTypes)
     const attacksTypes =
       attackTypes[0] == 'any-type'
         ? await getAttackTypes()
