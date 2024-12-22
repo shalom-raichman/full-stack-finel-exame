@@ -9,3 +9,12 @@ export interface AttackTypeModel extends MyState {
     casualties: number
   }[]
 }
+
+export interface AttackRegionModel extends MyState {
+  data: {
+    attackRegion: string
+    casualties: number
+    longitude: number
+    latitude: number
+  }[]
+}
