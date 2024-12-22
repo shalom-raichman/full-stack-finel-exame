@@ -9,7 +9,7 @@ const AttackTypes = () => {
     data: [],
     loading: false,
   }
-  const [attackTypes, setAttackTypes] = useState<typeof initialSatate>(initialSatate)
+  const [attackTypes, setAttackTypes] = useState<AttackTypeModel>(initialSatate)
   useEffect(() => {
     ;(async () => {
       setAttackTypes({ ...attackTypes, loading: true })
@@ -22,7 +22,7 @@ const AttackTypes = () => {
     <div className='page'>
       <div>{attackTypes.loading ? <div>loading</div> : JSON.stringify(attackTypes)}</div>
       <BarChart
-        width={500}
+        width={1000}
         height={300}
         series={[
           {
