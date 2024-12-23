@@ -144,19 +144,12 @@ export const incidentTrendsService = async (filters: {
 }) => {
   try {
     if (filters.year) {
-      console.log(
-        reduceYears((await incidentTrendsBySingelYear(filters.year)) as IAttackYear[])
-      )
       return reduceYears(
         (await incidentTrendsBySingelYear(filters.year)) as IAttackYear[]
       )
     } else if (filters.fromYear && filters.toYear) {
-      console.log(
-        reduceYears(await incidentTrendsByYears(filters.fromYear, filters.toYear))
-      )
       return reduceYears(await incidentTrendsByYears(filters.fromYear, filters.toYear))
     } else if (filters.Nyears) {
-      console.log(reduceYears(await incidentTrendsInLastYears(filters.Nyears)))
       return reduceYears(await incidentTrendsInLastYears(filters.Nyears))
     }
   } catch (err) {
