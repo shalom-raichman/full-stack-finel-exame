@@ -51,7 +51,7 @@ const CasualtyRegions = () => {
             return { label: a.attackRegion }
           })}
           sx={{ width: 300, zIndex: 900, position: 'absolute', right: 10, top: 10 }}
-          renderInput={(params) => <TextField {...params} label='Movie' />}
+          renderInput={(params) => <TextField {...params} label='Region' />}
           onChange={(e, v) => handelSelect(e, v)}
         />
 
