@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css'
 import { useEffect, useState } from 'react'
 import { AttackRegionModel } from '../../types/state.model'
 import { getDeadliestRegions } from '../../services/analysis.service'
-import { CircularProgress } from '@mui/material'
+import { Autocomplete, CircularProgress, TextField } from '@mui/material'
 
 const CasualtyRegions = () => {
   const initialState: AttackRegionModel = {
@@ -12,13 +12,22 @@ const CasualtyRegions = () => {
     data: [],
   }
   const [attackRegions, setAttackRegions] = useState(initialState)
+  const [attackRegionsSelect, setAttackRegionsSelect] = useState(initialState.data)
+
   useEffect(() => {
     ;(async () => {
       setAttackRegions({ ...attackRegions, loading: true })
       const data = await getDeadliestRegions()
       setAttackRegions({ loading: false, err: data.err, data: data.data })
+      setAttackRegionsSelect(data.data)
     })()
   }, [])
+
+  const handelSelect = async (e: React.SyntheticEvent<Element, Event>, v: any) => {
+    setAttackRegions({ ...attackRegions, loading: true })
+    const data = await getDeadliestRegions(v?.label)
+    setAttackRegions({ loading: false, err: data.err, data: data.data })
+  }
 
   return (
     <div className='page'>
@@ -34,8 +43,18 @@ const CasualtyRegions = () => {
         />
         <input
           type='text'
-          style={{ zIndex: 900, position: 'absolute', right: 10, top: 10 }}
+          // style={{ zIndex: 900, position: 'absolute', right: 10, top: 10 }}
         />
+
+        <Autocomplete
+          options={attackRegionsSelect.map((a) => {
+            return { label: a.attackRegion }
+          })}
+          sx={{ width: 300, zIndex: 900, position: 'absolute', right: 10, top: 10 }}
+          renderInput={(params) => <TextField {...params} label='Movie' />}
+          onChange={(e, v) => handelSelect(e, v)}
+        />
+
         {attackRegions.loading ? (
           <CircularProgress className='loading' />
         ) : (
