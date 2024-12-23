@@ -1,8 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getDeadliestAttackTypes } from '../../services/analysis.service'
-import { BarChart } from '@mui/x-charts'
 import { AttackTypeModel } from '../../types/state.model'
 import { Autocomplete, CircularProgress, TextField } from '@mui/material'
+import {
+  Bar,
+  BarChart,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
 
 const AttackTypes = () => {
   const initialSatate: AttackTypeModel = {
@@ -47,18 +55,19 @@ const AttackTypes = () => {
         onChange={(e, v) => handelSelect(e, v)}
       />
 
-      <BarChart
-        width={1000}
-        height={300}
-        series={[
-          {
-            data: attackTypes.data.map((a) => a.casualties),
-            id: 'uvId',
-            stack: 'total',
-          },
-        ]}
-        xAxis={[{ data: attackTypes.data.map((a) => a.attackType), scaleType: 'band' }]}
-      />
+      <ResponsiveContainer width='80%' height='70%'>
+        <BarChart
+          data={attackTypes.data.map((a) => {
+            return { name: a.attackType, casualties: a.casualties }
+          })}
+        >
+          <XAxis dataKey='name' angle={12} fontSize={7} tickMargin={5} />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey='casualties' stackId='a' fill='#5feee7' />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   )
 }
