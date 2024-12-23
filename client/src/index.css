@@ -65,3 +65,21 @@
   flex-direction: column;
   gap: 40px;
 }
+
+.incident-charts-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.filter {
+  width: 150px;
+}
