@@ -73,15 +73,16 @@ const Nav = () => {
 
           <Divider />
           <ListItemButton
-            selected={selectedIndex === 2}
+            selected={selectedIndex === 3}
             onClick={(event) => {
-              handleListItemClick(event, 2)
+              handleListItemClick(event, 3)
+              handelNavigate('TopGroups')
             }}
           >
             <ListItemIcon>
               <TfiAgenda size={30} />
             </ListItemIcon>
-            <ListItemText primary='מלאי' />
+            <ListItemText primary='Top Groups' />
           </ListItemButton>
         </List>
       </Box>

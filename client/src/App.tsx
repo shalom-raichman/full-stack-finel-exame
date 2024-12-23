@@ -3,6 +3,7 @@ import Pages from './components/pages/Pages'
 import AttackTypes from './components/pages/AttackTypes'
 import CasualtyRegions from './components/pages/CasualtyRegions'
 import AttackYears from './components/pages/AttackYears'
+import TopGroups from './components/pages/TopGroups'
 
 const App = () => {
   return (
@@ -11,9 +12,9 @@ const App = () => {
         <Route path='/' element={<Pages />}>
           <Route path='attackTypes' element={<AttackTypes />} />
           <Route path='CasualtyRegions' element={<CasualtyRegions />} />
-          <Route path="IncidentTrends" element={<AttackYears />} />
-        {/* <Route path="inventory" element={<InventoryList />} />
-        <Route path="charts" element={<Deshboard />} /> */}
+          <Route path='IncidentTrends' element={<AttackYears />} />
+          <Route path='TopGroups' element={<TopGroups />} />
+          {/* <Route path="charts" element={<Deshboard />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
