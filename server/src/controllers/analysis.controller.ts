@@ -38,7 +38,6 @@ export const highestCasualtyRegions = async (req: Request, res: Response) => {
 export const incidentTrends = async (req: Request, res: Response) => {
   try {
     const query = JSON.parse((req.query.filter as string))
-    console.log(query)
     const data = await incidentTrendsService(query)
     res.json({
       err: false,
