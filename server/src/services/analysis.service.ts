@@ -130,7 +130,7 @@ const incidentTrendsByYears = async (from: number, to: number) => {
 const reduceYears = (attaksYears: IAttackYear[]) => {
   return attaksYears.map((a) => {
     return {
-      attakYear: a.attackYear,
+      attackYear: a.attackYear,
       attacksNum: a.attacks.length,
     }
   })
