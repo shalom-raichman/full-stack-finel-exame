@@ -31,7 +31,6 @@ const Nav = () => {
     <div className='nav'>
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <List component='nav' aria-label='main mailbox folders'>
-
           <ListItemButton
             selected={selectedIndex === 0}
             onClick={(event) => {
@@ -62,19 +61,20 @@ const Nav = () => {
             selected={selectedIndex === 2}
             onClick={(event) => {
               handleListItemClick(event, 2)
+              handelNavigate('IncidentTrends')
             }}
           >
             <ListItemIcon>
               <HiOutlineClipboardDocumentList size={30} />
             </ListItemIcon>
-            <ListItemText primary='הזמנות' />
+            <ListItemText primary='Incident Trends' />
           </ListItemButton>
+
 
           <Divider />
           <ListItemButton
             selected={selectedIndex === 2}
             onClick={(event) => {
-              // heandleAllInventory()
               handleListItemClick(event, 2)
             }}
           >
