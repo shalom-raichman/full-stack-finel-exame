@@ -107,7 +107,7 @@ const incidentTrendsInLastYears = async (yearsNum: number) => {
     const currentYear = new Date().getFullYear()
 
     const attackYears = (await AttackYearModel.find({
-      attackYear: { $gt: currentYear - yearsNum },
+      attackYear: { $gte: currentYear - yearsNum },
     })) as IAttackYear[]
 
     return attackYears
@@ -119,7 +119,7 @@ const incidentTrendsInLastYears = async (yearsNum: number) => {
 const incidentTrendsByYears = async (from: number, to: number) => {
   try {
     const attackYears = (await AttackYearModel.find({
-      attackYear: { $gt: from, $lt: to },
+      attackYear: { $gte: from, $lte: to },
     })) as IAttackYear[]
     return attackYears
   } catch (err) {
