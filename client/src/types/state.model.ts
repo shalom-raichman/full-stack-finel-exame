@@ -20,3 +20,11 @@ export interface AttackRegionModel extends MyState {
     latitude: number
   }[]
 }
+
+export interface AttackYearModel extends MyState {
+  data: {
+    _id: string
+    attackYear: string
+    attacksNum: number
+  }[]
+}
