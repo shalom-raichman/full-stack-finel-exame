@@ -26,20 +26,16 @@ const getGroupsByRgion = async (region: string) => {
   }
 }
 
-export const topGroupsService = async (region: string, top: boolean) => {
+export const topGroupsService = async (region: string, top = true) => {
   try {
     if (top) {
-      console.log(
-        (await getGroupsByRgion(region))
-          .sort((a, b) => b.attacksNumber - a.attacksNumber)
-          .slice(0, 5)
-      )
       return (await getGroupsByRgion(region))
         .sort((a, b) => b.attacksNumber - a.attacksNumber)
         .slice(0, 5)
     } else {
-      console.log(await getGroupsByRgion(region))
-      return await getGroupsByRgion(region)
+      return (await getGroupsByRgion(region)).sort(
+        (a, b) => b.attacksNumber - a.attacksNumber
+      )
     }
   } catch (err) {
     throw err
