@@ -4,3 +4,8 @@ export interface AttackYearDto {
   toYear?: number
   Nyears?: number
 }
+
+export interface AttackOrganizationDto {
+  region: string
+  top: boolean
+}

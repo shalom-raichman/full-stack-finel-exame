@@ -28,3 +28,10 @@ export interface AttackYearModel extends MyState {
     attacksNum: number
   }[]
 }
+export interface AttackOrganizationModel extends MyState {
+  data: {
+    _id: string
+    organization: string
+    attacksNumber: number
+  }[]
+}
