@@ -6,27 +6,25 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import MarkeCoordinates from './MarkeCoordinates'
+import { createNewAttackService } from '../../services/CRUD.service'
+import { CreateAttackDTO } from '../../types/createAttackDTO'
 
 const CreateAttackForm = () => {
   const [open, setOpen] = useState(false)
 
-  const [nkill, setnkill] = useState<string>('')
-  const [nwound, setnwound] = useState<string>('')
+  const [nkill, setnkill] = useState<number>(0)
+  const [nwound, setnwound] = useState<number>(0)
   const [city, setcity] = useState<string>('')
-  const [iyear, setiyear] = useState<string>('')
+  const [iyear, setiyear] = useState<number>(2000)
   const [gname, setgname] = useState<string>('')
   const [attacktype1_txt, setattacktype1_txt] = useState<string>('')
   const [summary, setsummary] = useState<string>('')
   const [latitude, setlatitude] = useState<number>(0)
   const [longitude, setlongitude] = useState<number>(0)
 
-  const handelSubmit = async () => {
-    console.log(form)
-  }
-
-  const form = {
+  const form: CreateAttackDTO = {
     nkill,
     nwound,
     city,
@@ -37,15 +35,27 @@ const CreateAttackForm = () => {
     attacktype1_txt,
     summary,
   }
+
+  const response = useRef<CreateAttackDTO>(form)
+
+  const handelSubmit = async () => {
+    const { attacktype1_txt, city, gname, longitude } = form
+    if (!attacktype1_txt || !city || !gname || !longitude)
+      alert('All filds must be be provided')
+    const data = await createNewAttackService(form)
+    response.current = data.data
+    alert(`New attack created at: ${response.current.city}, by: ${response.current.gname}, and ${response.current.nkill} daied`)
+  }
+
   return (
     <div className='create-attack-form'>
       <h1>New Attack Form</h1>
-      <Button onClick={()=>setOpen(!open)}>Chose Coordinates</Button>
+      <Button onClick={() => setOpen(!open)}>Chose Coordinates</Button>
       <TextField
         size='small'
         className='myInput'
         onChange={(e) => {
-          setnkill(e.target.value)
+          setnkill(Number(e.target.value))
         }}
         id='outlined-basic'
         label='Killed'
@@ -55,7 +65,7 @@ const CreateAttackForm = () => {
       <TextField
         size='small'
         className='myInput'
-        onChange={(e) => setnwound(e.target.value)}
+        onChange={(e) => setnwound(Number(e.target.value))}
         id='outlined-basic'
         label='Wounded'
         variant='outlined'
@@ -72,7 +82,7 @@ const CreateAttackForm = () => {
       <TextField
         size='small'
         className='myInput'
-        onChange={(e) => setiyear(e.target.value)}
+        onChange={(e) => setiyear(Number(e.target.value))}
         id='outlined-basic'
         label='Year'
         variant='outlined'
