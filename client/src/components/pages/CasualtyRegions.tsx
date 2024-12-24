@@ -41,11 +41,6 @@ const CasualtyRegions = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
-        <input
-          type='text'
-          // style={{ zIndex: 900, position: 'absolute', right: 10, top: 10 }}
-        />
-
         <Autocomplete
           options={attackRegionsSelect.map((a) => {
             return { label: a.attackRegion }
