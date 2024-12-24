@@ -18,3 +18,20 @@ export const createNewAttackService = async (attack: CreateAttackDTO) => {
     console.error(err)
   }
 }
+
+export const updateNewAttackService = async (attack: CreateAttackDTO) => {
+  try {
+    const res = await fetch(`${BASE_URL}api/CRUD/update`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(attack),
+    })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.error(err)
+  }
+}

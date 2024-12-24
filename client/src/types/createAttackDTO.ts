@@ -1,4 +1,5 @@
 export interface CreateAttackDTO {
+  _id?: string
   nkill: number
   nwound: number
   city: string

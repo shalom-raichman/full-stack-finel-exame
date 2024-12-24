@@ -111,6 +111,19 @@
   align-items: center;
   gap: 10px;
 }
+.update-attack-form {
+  background-color: rgba(255, 255, 255, 0.842);
+  border-radius: 10px;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
 
 .myInput {
   width: 90%;
