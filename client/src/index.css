@@ -25,11 +25,22 @@
 
 .logo {
   grid-area: logo;
-  background-color: whitesmoke;
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.logo > img {
+  height: 70%;
+}
+
 .header {
   grid-area: header;
   background-color: wheat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .nav {
   grid-area: nav;
@@ -82,4 +93,7 @@
 
 .filter {
   width: 150px;
+}
+
+.marke-coordinates {
 }
