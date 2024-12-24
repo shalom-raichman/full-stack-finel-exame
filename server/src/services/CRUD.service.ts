@@ -96,7 +96,7 @@ const createAttackOrganization = async (attack: IAttack, createNew: boolean) => 
   }
 }
 
-const createAttack = async (attack: IAttack, createNew: boolean) => {
+export const createUpdateAttackService = async (attack: IAttack, createNew: boolean) => {
   try {
     if (!attack) throw new Error('attack must be provided')
 
