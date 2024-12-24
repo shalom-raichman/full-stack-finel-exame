@@ -1,5 +1,6 @@
 import analysisRouter from './routes/analysis.route'
 import relationshipsRouter from './routes/relationships.route'
+import CRUDouter from './routes/CRUD.route'
 import express from 'express'
 import { connentToMongo } from './config/db'
 import cors from 'cors'
@@ -16,6 +17,7 @@ app.use(express.json())
 
 app.use('/api/analysis', analysisRouter)
 app.use('/api/relationships', relationshipsRouter)
+app.use('/api/CRUD', CRUDouter)
 
 app.listen(PORT, () => {
   console.log(`[server] is up and runing on port ${PORT}`)
