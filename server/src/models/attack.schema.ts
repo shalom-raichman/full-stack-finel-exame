@@ -17,32 +17,42 @@ export const attackSchema = new Schema<IAttack>({
   eventid: Number,
   nkill: {
     type: Number,
-    default: 0
+    default: 0,
   },
   nwound: {
     type: Number,
     default: 0
   },
   city: {
-    type: String
+    type: String,
+    required: true,
+    minlength: [3, 'City name is to short']
   },
   iyear: {
-    type: Number
+    type: Number,
+    required: true,
+    minlength: [4, 'year is not valid']
   },
   imonth: {
     type: Number
   },
   latitude: {
-    type: Number
+    type: Number,
+    required: true
   },
   longitude: {
-    type: Number
+    type: Number,
+    required: true
   },
   gname: {
-    type: String
+    type: String,
+    required: true,
+    minlength: [3, 'Organization is to short']
   },
   attacktype1_txt: {
-    type: String
+    type: String,
+    required: true,
+    minlength: [3, 'Attack type is to short']
   }
 })
 
