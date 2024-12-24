@@ -3,7 +3,7 @@ export interface CreateAttackDTO {
   nwound: number
   city: string
   iyear: number
-  imonth: number
+  imonth?: number
   latitude: number
   longitude: number
   gname: string
