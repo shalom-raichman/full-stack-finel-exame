@@ -1,7 +1,9 @@
 import { Router } from 'express'
-import { createAttack, updateAttack } from '../controllers/CRUD.controller'
+import { createAttack, getAttacksPage, updateAttack } from '../controllers/CRUD.controller'
 
 const router = Router()
+
+router.get('/:page', getAttacksPage)
 
 router.post('/create', createAttack)
 
