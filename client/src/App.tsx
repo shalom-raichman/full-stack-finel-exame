@@ -4,7 +4,7 @@ import AttackTypes from './components/pages/AttackTypes'
 import CasualtyRegions from './components/pages/CasualtyRegions'
 import AttackYears from './components/pages/AttackYears'
 import TopGroups from './components/pages/TopGroups'
-import CreateAttack from './components/pages/CreateAttack'
+import CreateAttack from './components/pages/newAttack/CreateAttack'
 
 const App = () => {
   return (
