@@ -5,13 +5,13 @@ import { getRegionsService } from '../services/utils.service'
 export const topGroups = async (req: Request, res: Response) => {
   try {
     const data = await topGroupsService(req.params.region, JSON.parse(req.params.top))
-    res.json({
+    res.status(200).json({
       err: false,
       message: 'Here is the deadliest organizations in the region',
       data: data,
     })
   } catch (err) {
-    res.json({
+    res.status(400).json({
       err: true,
       message: (err as Error).message,
       data: null,
@@ -22,13 +22,13 @@ export const topGroups = async (req: Request, res: Response) => {
 export const getRegions = async (req: Request, res: Response) => {
   try {
     const data = await getRegionsService()
-    res.json({
+    res.status(200).json({
       err: false,
       message: 'Here is the deadliest organizations in the region',
       data: data,
     })
   } catch (err) {
-    res.json({
+    res.status(400).json({
       err: true,
       message: (err as Error).message,
       data: null,
