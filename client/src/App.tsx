@@ -4,6 +4,7 @@ import AttackTypes from './components/pages/AttackTypes'
 import CasualtyRegions from './components/pages/CasualtyRegions'
 import AttackYears from './components/pages/AttackYears'
 import TopGroups from './components/pages/TopGroups'
+import CreateAttack from './components/pages/CreateAttack'
 
 const App = () => {
   return (
@@ -14,7 +15,7 @@ const App = () => {
           <Route path='CasualtyRegions' element={<CasualtyRegions />} />
           <Route path='IncidentTrends' element={<AttackYears />} />
           <Route path='TopGroups' element={<TopGroups />} />
-          {/* <Route path="charts" element={<Deshboard />} /> */}
+          <Route path="CreateAttack" element={<CreateAttack />} />
         </Route>
       </Routes>
     </BrowserRouter>

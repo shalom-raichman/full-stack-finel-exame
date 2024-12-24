@@ -12,6 +12,7 @@ import { HiOutlineClipboardDocumentList } from 'react-icons/hi2'
 import { IoStatsChartOutline } from 'react-icons/io5'
 import { TfiAgenda } from 'react-icons/tfi'
 import { useNavigate } from 'react-router-dom'
+import { GiMineExplosion } from "react-icons/gi";
 
 const Nav = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -83,6 +84,18 @@ const Nav = () => {
               <TfiAgenda size={30} />
             </ListItemIcon>
             <ListItemText primary='Top Groups' />
+          </ListItemButton>
+          <ListItemButton
+            selected={selectedIndex === 4}
+            onClick={(event) => {
+              handleListItemClick(event, 4)
+              handelNavigate('CreateAttack')
+            }}
+          >
+            <ListItemIcon>
+              <GiMineExplosion size={30} />
+            </ListItemIcon>
+            <ListItemText primary='Create New Attack' />
           </ListItemButton>
         </List>
       </Box>
