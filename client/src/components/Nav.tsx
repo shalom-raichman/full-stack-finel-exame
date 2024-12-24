@@ -12,7 +12,8 @@ import { HiOutlineClipboardDocumentList } from 'react-icons/hi2'
 import { IoStatsChartOutline } from 'react-icons/io5'
 import { TfiAgenda } from 'react-icons/tfi'
 import { useNavigate } from 'react-router-dom'
-import { GiMineExplosion } from "react-icons/gi";
+import { GiMineExplosion } from 'react-icons/gi'
+import { GrUpdate } from 'react-icons/gr'
 
 const Nav = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -71,7 +72,6 @@ const Nav = () => {
             <ListItemText primary='Incident Trends' />
           </ListItemButton>
 
-
           <Divider />
           <ListItemButton
             selected={selectedIndex === 3}
@@ -85,6 +85,7 @@ const Nav = () => {
             </ListItemIcon>
             <ListItemText primary='Top Groups' />
           </ListItemButton>
+
           <ListItemButton
             selected={selectedIndex === 4}
             onClick={(event) => {
@@ -96,6 +97,19 @@ const Nav = () => {
               <GiMineExplosion size={30} />
             </ListItemIcon>
             <ListItemText primary='Create New Attack' />
+          </ListItemButton>
+
+          <ListItemButton
+            selected={selectedIndex === 5}
+            onClick={(event) => {
+              handleListItemClick(event, 5)
+              handelNavigate('UpdateAttack')
+            }}
+          >
+            <ListItemIcon>
+              <GrUpdate size={30} />
+            </ListItemIcon>
+            <ListItemText primary='Update Attack' />
           </ListItemButton>
         </List>
       </Box>
