@@ -8,8 +8,8 @@ import {
 } from '@mui/material'
 import { useRef, useState } from 'react'
 import MarkeCoordinates from './MarkeCoordinates'
-import { createNewAttackService } from '../../services/CRUD.service'
-import { CreateAttackDTO } from '../../types/createAttackDTO'
+import { createNewAttackService } from '../../../services/CRUD.service'
+import { CreateAttackDTO } from '../../../types/createAttackDTO'
 
 const CreateAttackForm = () => {
   const [open, setOpen] = useState(false)
