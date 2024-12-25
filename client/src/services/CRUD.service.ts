@@ -1,6 +1,6 @@
 import { CreateAttackDTO } from '../types/createAttackDTO'
 
-const BASE_URL = 'http://localhost:1414/'
+const BASE_URL = 'https://full-stack-finel-exame.onrender.com/'
 
 export const createNewAttackService = async (attack: CreateAttackDTO) => {
   try {

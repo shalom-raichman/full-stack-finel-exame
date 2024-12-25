@@ -29,15 +29,16 @@ const UpdateAttackForm = ({ attack }: Props) => {
   const [longitude, setlongitude] = useState<number>(0)
 
   const form: CreateAttackDTO = {
-    nkill,
-    nwound,
-    city,
-    iyear,
-    latitude,
-    longitude,
-    gname,
-    attacktype1_txt,
-    summary,
+    _id: attack._id,
+    nkill: nkill ? nkill : attack.nkill,
+    nwound: nwound ? nwound : attack.nwound,
+    city: city ? city : attack.city,
+    iyear: iyear ? iyear : attack.iyear,
+    latitude: latitude ? latitude : attack.latitude,
+    longitude: longitude ? longitude : attack.longitude,
+    gname: gname ? gname : attack.gname,
+    attacktype1_txt: attacktype1_txt ? attacktype1_txt : attack.attacktype1_txt,
+    summary: summary ? summary : attack.summary,
   }
 
   const response = useRef<CreateAttackDTO>(form)
@@ -47,11 +48,14 @@ const UpdateAttackForm = ({ attack }: Props) => {
     if (!attacktype1_txt || !city || !gname || !longitude)
       alert('All filds must be be provided')
     const data = await updateNewAttackService(form)
-    if(data.err) alert('Somthing went wrong')
-    response.current = data.data
-    alert(
-      `Attack updated`
-    )
+    if(data.err) {
+      alert(data.message)
+    }else {
+      response.current = data.data
+      alert(
+        `Attack updated`
+      )
+    }
   }
 
   return (
@@ -68,7 +72,7 @@ const UpdateAttackForm = ({ attack }: Props) => {
         label='Killed'
         variant='outlined'
         type='number'
-        value={attack.nkill}
+        defaultValue={attack.nkill}
       />
       <TextField
         size='small'
@@ -78,7 +82,7 @@ const UpdateAttackForm = ({ attack }: Props) => {
         label='Wounded'
         variant='outlined'
         type='number'
-        value={attack.nwound}
+        defaultValue={attack.nwound}
       />
       <TextField
         size='small'
@@ -87,7 +91,7 @@ const UpdateAttackForm = ({ attack }: Props) => {
         id='outlined-basic'
         label='City'
         variant='outlined'
-        value={attack.city}
+        defaultValue={attack.city}
       />
       <TextField
         size='small'
@@ -97,7 +101,7 @@ const UpdateAttackForm = ({ attack }: Props) => {
         label='Year'
         variant='outlined'
         type='number'
-        value={attack.iyear}
+        defaultValue={attack.iyear}
       />
       <TextField
         size='small'
@@ -106,7 +110,7 @@ const UpdateAttackForm = ({ attack }: Props) => {
         id='outlined-basic'
         label='Organization'
         variant='outlined'
-        value={attack.gname}
+        defaultValue={attack.gname}
       />
       <TextField
         size='small'
@@ -115,7 +119,7 @@ const UpdateAttackForm = ({ attack }: Props) => {
         id='outlined-basic'
         label='Attack Type'
         variant='outlined'
-        value={attack.attacktype1_txt}
+        defaultValue={attack.attacktype1_txt}
       />
       <TextField
         size='small'
@@ -124,7 +128,7 @@ const UpdateAttackForm = ({ attack }: Props) => {
         id='outlined-basic'
         label='Summary'
         variant='outlined'
-        value={attack.summary}
+        defaultValue={attack.summary}
       />
       <div>
         <Button onClick={handelSubmit}>Submit</Button>

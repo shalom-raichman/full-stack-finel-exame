@@ -1,6 +1,6 @@
 import { AttackYearDto } from '../types/attackYear.DTO'
 
-const BASE_URL = 'http://localhost:1414/'
+const BASE_URL = 'https://full-stack-finel-exame.onrender.com/'
 
 export const getDeadliestAttackTypes = async (attackType = ['any-type']) => {
   try {

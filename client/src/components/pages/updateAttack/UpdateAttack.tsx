@@ -34,6 +34,12 @@ const UpdateAttack = () => {
 
   return (
     <div className='page'>
+      <Pagination
+        count={1500}
+        showFirstButton
+        showLastButton
+        onChange={(e, v) => getData(v.valueOf())}
+      />
       {/* <Autocomplete
         options={attackRegionsSelect.map((a) => {
           return { label: a.attackRegion }
